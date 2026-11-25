@@ -25,6 +25,8 @@ LINE = (
     "job security."
 )
 
+MAX_CHARS = 200
+
 
 def abort(message):
     """Stop with the reason on stderr and a non-zero exit."""
@@ -34,8 +36,8 @@ def abort(message):
 
 def deliver():
     """Validate the joke against the gate, then write it out."""
-    if not 1 <= len(LINE) <= 200:
-        return abort(f"joke is {len(LINE)} characters, the gate allows 1-200")
+    if not 1 <= len(LINE) <= MAX_CHARS:
+        return abort(f"joke is {len(LINE)} characters, the gate allows 1-{MAX_CHARS}")
     if not LINE.strip():
         return abort("joke is only white space, the gate refuses it")
     target = Path(OUTPUT_DIR) / "entry.txt"
